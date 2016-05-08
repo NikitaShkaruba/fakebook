@@ -1,0 +1,27 @@
+<h1 class="text-center">FakeBook</h1>
+<br/>
+<br/>
+
+<div class="col-md-3 col-centered"></div>
+
+<div class="col-md-1 col-centered">
+  <%= link_to 'My Page', person_path(@person) %>      <br/>
+  <%= link_to 'My Friends', person_path(@person) %>   <br/>
+  <%= link_to 'My Photos', person_path(@person) %>    <br/>
+  <%= link_to 'My Audios', person_path(@person) %>    <br/>
+  <%= link_to 'My Messages', person_path(@person) %>  <br/>
+  <%= link_to 'My News', person_path(@person) %>      <br/>
+  <%= link_to 'My Settings', person_path(@person) %>  <br/>
+</div>
+<div class="col-md-2 col-centered">
+  <p>Photos</p>
+  <p>Friends</p>
+  <p>Audios</p>
+</div>
+<div class="col-md-3 col-centered">
+  <strong><%= @person.name + ' ' + @person.surname %></strong>
+  <p><%= @person.status %></p>
+</div>
+
+<div class="col-md-3 col-centered"></div>
+<div class="col-md-1 col-centered"></div>
