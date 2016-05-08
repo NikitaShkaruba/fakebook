@@ -13,12 +13,12 @@ class PeopleController < ApplicationController
     if @person.save
       redirect_to @person
     else
-      render 'sht'
+      render 'new'
     end
   end
 
 private
   def person_params
-    params.require(:people).permit(:name, :surname, :password, :gender, :phone_number)
+    params.require(:people).permit(:name, :surname, :password, :mail)
   end
 end

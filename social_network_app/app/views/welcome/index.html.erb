@@ -1,4 +1,5 @@
 <html>
+<% provide(:title, 'Sign up') %>
 <head>
   <title>Hello stranger!</title>
 </head>
@@ -10,19 +11,28 @@
     <div class="col-md-3 col-md-offset-3">
       <h2>Sign up</h2>
       <%= form_for :people, url: people_path do |f| %>
+          <%= render 'shared/error_messages' %>
+
           First name: <br/>
-            <%= f.text_field :name, class: 'form-control' %><br/>
+            <%= f.text_field :name, class: 'form-control' %>
           Surname: <br/>
-            <%= f.text_field :surname, class: 'form-control' %><br/>
+            <%= f.text_field :surname, class: 'form-control' %>
+          <br/>
+
+          Mail: <br/>
+            <%= f.email_field :mail, class: 'form-control' %>
           Password: <br/>
-            <%= f.password_field :password, class: 'form-control' %><br/>
-          Phone number: <br/>
-            <%= f.text_field :phone_number, class: 'form-control' %> <br/>
-          Gender: <br/>
+            <%= f.password_field :password, class: 'form-control' %>
+          Password confirmation: <br/>
+            <%= f.password_field :password_confirmation, class: 'form-control' %>
+          <br/>
+
+          <!--Gender: <br/>
             <%= f.radio_button :gender, 'Male', :checked => true %>
             <%= label :gender_Male, 'Male' %>
             <%= f.radio_button :gender, 'Female' %>
-            <%= label :gender_Female, 'Female' %> <br/><br/>
+            <%= label :gender_Female, 'Female' %>
+          <br/><br/-->
 
           <%= f.submit 'Sign up' %>
       <% end %>
@@ -43,5 +53,6 @@
     <div class="col-md-3 col-" ></div>
     <br/>
   </div>
+  <%= debug(params) if Rails.env.development? %>
 </body>
 </html>
