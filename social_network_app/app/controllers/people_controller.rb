@@ -11,6 +11,7 @@ class PeopleController < ApplicationController
     @person = Person.new(person_params)
 
     if @person.save
+      log_in @person
       redirect_to @person
     else
       render 'index'

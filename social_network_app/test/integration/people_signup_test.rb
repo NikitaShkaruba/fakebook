@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UsersSignupTest < ActionDispatch::IntegrationTest
+class PeopleSignupTest < ActionDispatch::IntegrationTest
   test 'invalid signup information' do
     invalid_params = {
       params: {
@@ -37,5 +37,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
         post people_path, valid_post_params
         follow_redirect!
     end
+    assert_template 'people/show'
+    assert is_logged_in?
   end
 end
