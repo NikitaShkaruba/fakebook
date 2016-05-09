@@ -1,6 +1,6 @@
 class PeopleController < ApplicationController
   def index
-    @people = Person.all
+    @person = Person.new
   end
 
   def show
@@ -13,12 +13,12 @@ class PeopleController < ApplicationController
     if @person.save
       redirect_to @person
     else
-      render 'new'
+      render 'index'
     end
   end
 
 private
   def person_params
-    params.require(:people).permit(:name, :surname, :password, :mail)
+    params.require(:person).permit(:name, :surname, :password, :mail)
   end
 end
