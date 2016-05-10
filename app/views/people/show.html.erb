@@ -1,0 +1,13 @@
+<div class="col-md-2 col-centered">
+  <%= gravatar_for @person %>
+
+  <br/>
+  <br/>
+  <p>Photos</p>
+  <p>Friends</p>
+  <p>Audios</p>
+</div>
+<div class="col-md-3 col-centered">
+  <strong><%= @person.name + ' ' + @person.surname %></strong>
+  <p><%= @person.status %></p>
+</div>

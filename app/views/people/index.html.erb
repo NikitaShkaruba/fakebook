@@ -1,0 +1,30 @@
+<html>
+<% provide(:title, 'Sign up') %>
+<body>
+  <div>
+    <h2>Sign up</h2>
+    <%= form_for(@person) do |f| %>
+        <%= render 'shared/error_messages' %>
+
+        First name: <br/>
+          <%= f.text_field :name, class: 'form-control' %>
+        Surname: <br/>
+          <%= f.text_field :surname, class: 'form-control' %>
+        <br/>
+
+        Mail: <br/>
+          <%= f.email_field :mail, class: 'form-control' %>
+        Password: <br/>
+          <%= f.password_field :password, class: 'form-control' %>
+        Password confirmation: <br/>
+          <%= f.password_field :password_confirmation, class: 'form-control' %>
+        <br/>
+
+        <%= f.submit 'Sign up' %>
+    <% end %>
+    <br/>
+  </div>
+  </div>
+  <%= debug(params) if Rails.env.development? %>
+</body>
+</html>

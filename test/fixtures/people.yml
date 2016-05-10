@@ -1,0 +1,7 @@
+fedor:
+  name: Fedor
+  surname: Baranenko
+  city: Krasnodar
+  mail: Fedor.Baranenko@mail.ru
+  profession: teacher
+  password_digest: <%= Person.digest('password') %>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SocialNetworkApp</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <h1 class="text-center">Fakebook</h1>
+    </header>
+    <div class="row bg-primary">
+      <div class='col-md-1 col-md-offset-3'>
+        <div class='container'>
+          <% if logged_in? %>
+            <%= link_to 'my Page', current_user, id: 'logo' %> <br/>
+            <%= link_to 'My Friends', person_path(@current_user) %>   <br/>
+            <%= link_to 'My Photos', person_path(@current_user) %>    <br/>
+            <%= link_to 'My Audios', person_path(@current_user) %>    <br/>
+            <%= link_to 'My Messages', person_path(@current_user) %>  <br/>
+            <%= link_to 'My News', person_path(@current_user) %>      <br/>
+            <%= link_to 'My Settings', person_path(@current_user) %>  <br/><br/>
+            <%= link_to 'Log out', logout_path, method: 'delete' %>
+          <% else %>
+              <li><%= link_to 'Log in', login_path %></li>
+              <li><%= link_to 'Sign up', signup_path %></li>
+          <% end %>
+        </div>
+      </div>
+      <div class='container col-md-5'>
+        <%= yield %>
+      </div>
+    </div>
+  </body>
+</html>
