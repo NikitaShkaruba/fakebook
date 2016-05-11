@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  root 'people#index'
+  root 'users#index'
 
-  get    'signup'  => 'people#index'
+  get    'signup'  => 'users#index'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
-  resources :people
+  resources :users
 end

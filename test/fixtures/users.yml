@@ -1,0 +1,12 @@
+fedor:
+  name: Fedor
+  surname: Baranenko
+  city: Krasnodar
+  mail: fedor.baranenko@mail.ru
+  password_digest: <%= User.digest('password') %>
+
+michael:
+  name: Michael
+  surname: Kingdom
+  mail: m.kngdm@example.com
+  password_digest: <%= User.digest('qwerty') %>

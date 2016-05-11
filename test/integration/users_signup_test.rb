@@ -1,10 +1,10 @@
 require 'test_helper'
 
-class PeopleSignupTest < ActionDispatch::IntegrationTest
+class UsersSignupTest < ActionDispatch::IntegrationTest
   test 'invalid signup information' do
     invalid_params = {
       params: {
-        person: {
+          user: {
           name: '',
           mail: 'person@invalid',
           password: 'foo',
@@ -13,17 +13,17 @@ class PeopleSignupTest < ActionDispatch::IntegrationTest
       }
     }
 
-    assert_no_difference 'Person.count' do
-      get people_path
-      post(people_path, invalid_params)
+    assert_no_difference 'User.count' do
+      get users_path
+      post(users_path, invalid_params)
     end
   end
 
   test 'valid signup information' do
     valid_post_params = {
       params: {
-        person: {
-          name: 'Person',
+          user: {
+          name: 'User',
           surname: 'THEPERSON',
           mail: 'person_name@example.ru',
           password: 'foobarbar',
@@ -32,12 +32,12 @@ class PeopleSignupTest < ActionDispatch::IntegrationTest
       }
     }
 
-    assert_difference('Person.count', 1) do
-        get people_path
-        post people_path, valid_post_params
+    assert_difference('User.count', 1) do
+        get users_path
+        post users_path, valid_post_params
         follow_redirect!
     end
-    assert_template 'people/show'
+    assert_template 'users/show'
     assert is_logged_in?
   end
 end
