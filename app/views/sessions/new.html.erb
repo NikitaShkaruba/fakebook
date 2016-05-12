@@ -3,22 +3,27 @@
 <div class="row bg-primary">
   <h2>Log in</h2>
 
-    <%= form_for(:session, url: login_path) do |f| %>
+  <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
 
-        <%= f.label :email %>
-        <%= f.email_field :mail, class: 'form-control' %>
+  <%= form_for(:session, url: login_path) do |f| %>
+    <% render 'shared/error_messages' %>
 
-        <%= f.label :password %>
-        <%= f.password_field :password, class: 'form-control' %>
+    <%= f.label :email %>
+    <%= f.email_field :mail, class: 'form-control' %>
 
-        <%= f.label :remember_me, class: 'inline' do %>
-          <%= f.check_box :remember_me %>
-          <span>Remember me</span>
-        <% end %>
-        <br/><br/>
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control' %>
 
-        <%= f.submit 'Log in' %>
+    <%= f.label :remember_me, class: 'inline' do %>
+      <%= f.check_box :remember_me %>
+      <span>Remember me</span>
     <% end %>
+    <br/><br/>
 
-    <p>New user? <%= link_to 'Sign up now!', signup_path %></p>
+    <%= f.submit 'Log in' %>
+  <% end %>
+
+  <p>New user? <%= link_to 'Sign up now!', signup_path %></p>
 </div>
