@@ -1,10 +1,10 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
 
-  validates :name, presence: true, length: { maximum: 10}
-  validates :surname, presence: true, length: { maximum: 20}
+  validates :name, presence: true
+  validates :surname, presence: true
   validates :mail, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, uniqueness: { case_sensitive: false }
-  validates :password, presence:true, length: { minimum: 6}
+  validates :password, presence: true, length: { minimum: 6}, allow_nil: true
   before_save { self.mail = mail.downcase }
   has_secure_password
 

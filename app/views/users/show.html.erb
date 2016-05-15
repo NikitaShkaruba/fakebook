@@ -1,13 +1,55 @@
-<div class="col-md-2 col-centered">
-  <%= gravatar_for @user %>
+<div class="col-md-4 col-centered">
+  <%= gravatar_for @user, 200 %>
 
   <br/>
   <br/>
   <p>Photos</p>
   <p>Friends</p>
-  <p>Audios</p>
+  <p>Music</p>
 </div>
-<div class="col-md-3 col-centered">
+<div class="col-md-8">
   <strong><%= @user.name + ' ' + @user.surname %></strong>
-  <p><%= @user.status %></p>
+  <p class="text-muted"><%= @user.status %></p>
+  <hr style="width: 100%"/>
+
+  <div class="col-md-4">
+    <small class="text-muted">Purpose in life:</small>      <br/>
+    <small class="text-muted">Relationship status:</small>  <br/>
+    <small class="text-muted">Birthday:</small>             <br/>
+    <small class="text-muted">City:</small>                 <br/>
+    <small class="text-muted">Phone number:</small>         <br/>
+    <small class="text-muted">Gender: </small>              <br/>
+  </div>
+  <div class="col-md-8">
+    <small><%= @user.profession %></small>    <br/>
+    <small><%= @user.relationship %></small>  <br/>
+    <small><%= @user.date_of_birth %></small> <br/>
+    <small><%= @user.city %></small>          <br/>
+    <small><%= @user.phone_number %></small>  <br/>
+    <small><%= @user.gender %></small>        <br/>
+  </div>
+  <hr style="width: 100%"/>
+
+  <div class="col-md-13">
+    <p class="bg-info">Photos</p>
+    <li>Photo1</li>
+    <li>Photo2</li>
+  </div>
+  <br/>
+
+  <div class="col-md-13">
+    <p class="bg-info">Posts</p>
+    <% 15.times do |i|%>
+        <div class="container">
+          <div class="col-md-1">
+            <%= gravatar_for @user, 50 %>
+          </div>
+          <div class="col-md-3">
+            <p>Text about my amazing post # <%= i %></p>
+            <p><%= 'blahblah' * 5 %></p>
+          </div>
+        </div>
+        <hr style="width: 100%"/>
+    <% end %>
+  </div>
 </div>

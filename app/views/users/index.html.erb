@@ -1,30 +1,12 @@
-<html>
-<% provide(:title, 'Sign up') %>
-<body>
-  <div>
-    <h2>Sign up</h2>
-    <%= form_for(@user) do |f| %>
-        <%= render 'shared/error_messages' %>
+<% provide(:title, 'All users') %>
+<h1 class="text-center">All users!</h1>
 
-        First name: <br/>
-          <%= f.text_field :name, class: 'form-control' %>
-        Surname: <br/>
-          <%= f.text_field :surname, class: 'form-control' %>
-        <br/>
+<ul class="users">
+  <% @users.each do |user| %>
+  <li>
+    <%= gravatar_for user, 70 %>
+    <%= link_to user.name, user %>
+  </li>
+  <% end %>
+</ul>
 
-        Mail: <br/>
-          <%= f.email_field :mail, class: 'form-control' %>
-        Password: <br/>
-          <%= f.password_field :password, class: 'form-control' %>
-        Password confirmation: <br/>
-          <%= f.password_field :password_confirmation, class: 'form-control' %>
-        <br/>
-
-        <%= f.submit 'Sign up' %>
-    <% end %>
-    <br/>
-  </div>
-  </div>
-  <%= debug(params) if Rails.env.development? %>
-</body>
-</html>

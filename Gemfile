@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 gem 'rails', '>= 5.0.0.beta4', '< 5.1'
 gem 'bootstrap-sass', '3.2.0.0'
 gem 'bcrypt', '3.1.7'
+gem 'faker', '1.4.2'
 gem 'rails-controller-testing'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'

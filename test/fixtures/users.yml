@@ -8,5 +8,6 @@ fedor:
 michael:
   name: Michael
   surname: Kingdom
+  city: San Diego
   mail: m.kngdm@example.com
-  password_digest: <%= User.digest('qwerty') %>
+  password_digest: <%= User.digest('password') %>

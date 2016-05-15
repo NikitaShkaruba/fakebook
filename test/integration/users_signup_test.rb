@@ -14,7 +14,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     }
 
     assert_no_difference 'User.count' do
-      get users_path
+      get signup_path
       post(users_path, invalid_params)
     end
   end
@@ -32,10 +32,11 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       }
     }
 
+    get signup_path
+
     assert_difference('User.count', 1) do
-        get users_path
-        post users_path, valid_post_params
-        follow_redirect!
+      post users_path, valid_post_params
+      follow_redirect!
     end
     assert_template 'users/show'
     assert is_logged_in?
