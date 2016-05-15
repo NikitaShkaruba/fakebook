@@ -22,7 +22,7 @@
             <%= link_to 'My Audios', user_path(@current_user) %>    <br/>
             <%= link_to 'My Messages', user_path(@current_user) %>  <br/>
             <%= link_to 'My News', user_path(@current_user) %>      <br/>
-            <%= link_to 'My Settings', user_path(@current_user) %>  <br/><br/>
+            <%= link_to 'My Settings', edit_user_path(@current_user) %>  <br/><br/>
             <%= link_to 'Log out', logout_path, method: 'delete' %>
           <% else %>
               <li><%= link_to 'Log in', login_path %></li>
@@ -34,5 +34,6 @@
         <%= yield %>
       </div>
     </div>
+    <%= debug(params) if Rails.env.development? %>
   </body>
 </html>

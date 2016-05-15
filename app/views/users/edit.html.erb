@@ -2,44 +2,47 @@
 <h1>Edit your bio</h1>
 
 <%= form_for(@user) do |f| %>
-    <% render 'shared/error_messages' %>
+    <%= render 'shared/error_messages' %>
 
     <div class="gravatar_edit">
       <%= gravatar_for @user %>
       <a href="http://gravatar.com/emails" target="_blank">Change avatar!</a>
     </div>
 
-    <%= f.label :email %>
-    <%= f.email_field :mail, class: 'form-control' %>
+    <%= f.label :name %>
+    <%= f.text_field :name, value: @user.name, class: 'form-control' %>
 
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control' %>
-
-    <%= f.label :date_of_birth %>
-    <%= f.text_field :date_of_birth, class: 'form-control' %>
-
-    <%= f.label :city %>
-    <%= f.text_field :city, class: 'form-control' %>
-
-    <%= f.label :profession %>
-    <%= f.text_field :profession, class: 'form-control' %>
+    <%= f.label :surname %>
+    <%= f.text_field :surname, value: @user.surname, class: 'form-control' %>
 
     <%= f.label :status %>
-    <%= f.text_field :status, class: 'form-control' %>
+    <%= f.text_field :status, value: @user.status, class: 'form-control' %>
+
+    <br/>
 
     <%= f.label :phone_number %> <br/>
-    <%= telephone_field(@user, :phone_number) %> <br/>
+    <%= f.telephone_field :phone_number, value: @user.phone_number, class: 'form-control' %> <br/>
 
-    <%= f.label :relationship_status %> <br/>
-    <%= select_tag 'relationship status', '<option>None</option><option>Single</option><option>Engaged</option><option>Actively searching</option><option>Passively searching</option>'.html_safe %> <br/>
+    <%= f.label :city %>
+    <%= f.text_field :city, value: @user.city, class: 'form-control' %>
+
+    <%= f.label :date_of_birth %>
+    <%= f.date_field :date_of_birth, value: @user.date_of_birth,  class: 'form-control' %>
+
+    <%= f.label :profession %>
+    <%= f.text_field :profession, value: @user.profession, class: 'form-control' %>
+
+    <%= f.label :relationship %> <br/>
+    <%= f.select :relationship, options_for_select(['None', 'Single', 'Engaged', 'Actively Searching', 'Passively searching'], @user.relationship) %> <br/>
 
     <%= f.label :gender %> <br/>
-    <%= radio_button_tag(:gender, 'male') %>
-    <%= label_tag(:gender_male, "I'm a man!") %>
-    <%= radio_button_tag(:gender, 'female') %>
-    <%= label_tag(:gender_female, "I'm a woman!") %>
+    <%= f.radio_button :gender, 'male', checked: @user.gender == 'male' %>
+    <%= f.label :gender_male, "I'm a man!" %>
+    <%= f.radio_button :gender, 'female', checked: @user.gender == 'female' %>
+    <%= f.label :gender_female, "I'm a woman!" %>
+
     <br/><br/>
 
-    <%= f.submit 'Confirm changes' %>
+    <%= f.submit 'Confirm changes', class: 'btn btn-primary' %>
 <% end %>
 
