@@ -1,11 +1,8 @@
 <% provide(:title, 'Log in') %>
 
-<div class="row bg-primary">
+<div class="row">
   <h2>Log in</h2>
 
-  <% flash.each do |message_type, message| %>
-      <div cls guideaass="alert alert-<%= message_type %>"><%= message %></div>
-  <% end %>
 
   <%= form_for(:session, url: login_path) do |f| %>
     <% render 'shared/error_messages' %>

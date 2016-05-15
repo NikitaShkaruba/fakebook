@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SocialNetworkApp</title>
+    <title>FakeBook's home</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,29 +9,48 @@
   </head>
 
   <body>
-    <header>
-      <h1 class="text-center">Fakebook</h1>
-    </header>
-    <div class="row bg-primary">
-      <div class='col-md-1 col-md-offset-3'>
-        <div class='container'>
+    <div id="wrap" class="col-md-6 col-md-offset-3">
+      <header class="row">
+        <div class='col-md-1'>
+          <%= link_to image_tag('logo.jpg', height: '50', with: '680', :border => 0, :alt => '', :title => ''), login_path, :class => 'dock-item ' %>
+        </div>
+        <div class="col-md-7 col-md-offset-4">
+          <div class="center-block" >
+            <%= link_to 'Contact me VK', 'https://vk.com/wavemeaside' %>
+            <% if logged_in? %>
+              <%= link_to 'People', users_path %>
+              <%= link_to 'Log out', logout_path, method: 'delete' %>
+            <% else %>
+                <%= link_to 'Log in', root_path %>
+            <% end %>
+          </div>
+        </div>
+      </header>
+      <div class="row ">
+        <div class='col-sm-2 left-bar'>
           <% if logged_in? %>
-            <%= link_to 'my Page', current_user, id: 'logo' %> <br/>
+            <%= link_to 'My Page', current_user, id: 'logo' %> <br/>
             <%= link_to 'My Friends', user_path(@current_user) %>   <br/>
             <%= link_to 'My Photos', user_path(@current_user) %>    <br/>
             <%= link_to 'My Audios', user_path(@current_user) %>    <br/>
             <%= link_to 'My Messages', user_path(@current_user) %>  <br/>
             <%= link_to 'My News', user_path(@current_user) %>      <br/>
             <%= link_to 'My Settings', edit_user_path(@current_user) %>  <br/><br/>
-            <%= link_to 'Log out', logout_path, method: 'delete' %>
           <% else %>
-              <li><%= link_to 'Log in', login_path %></li>
-              <li><%= link_to 'Sign up', signup_path %></li>
+            <%= link_to 'Log in', login_path %> <br/>
+            <%= link_to 'Sign up', signup_path %>
           <% end %>
         </div>
-      </div>
-      <div class='container col-md-5'>
-        <%= yield %>
+        <div class='container col-md-10 right-wrap'>
+          <div>
+            <% flash.each do |message_type, message| %>
+                <div cls class="flash" guideaass="alert alert-<%= message_type %>"><%= message %></div>
+            <% end %>
+          </div>
+
+          <br/>
+          <%= yield %>
+        </div>
       </div>
     </div>
     <%= debug(params) if Rails.env.development? %>

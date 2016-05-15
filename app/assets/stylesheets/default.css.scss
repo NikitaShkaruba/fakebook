@@ -1,6 +1,34 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+header {
+  background-color: #4E729A;
+
+  a {
+    color: white;
+  }
+}
+
+small {
+  font-size: 80%;
+}
+
+.center-block {
+  display: table;
+  position: relative;
+  top: 15px;
+  padding-left: 100px;
+
+  a {
+    padding-left: 30px;
+  }
+}
+
+.right-wrap {
+  border: 1px solid #b0eef4;
+}
+
 .bg-primary input {
   color: black;
 }
@@ -30,4 +58,9 @@
   .form-control {
     color: $state-danger-text;
   }
+}
+
+.flash {
+  @extend .text-center;
+  color: blue;
 }

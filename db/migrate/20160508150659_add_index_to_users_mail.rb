@@ -1,4 +1,4 @@
-class AddIndexToPeopleMail < ActiveRecord::Migration[5.0]
+class AddIndexToUsersMail < ActiveRecord::Migration[5.0]
   def change
     add_index :users, :mail, unique: true
   end
