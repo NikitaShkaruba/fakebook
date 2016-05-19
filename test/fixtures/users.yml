@@ -3,6 +3,8 @@ admin:
   surname: Adminov
   admin: true
   mail: admin@yourservice.com
+  activated: true
+  activated_at: <%= Time.zone.now %>
   password_digest: <%= User.digest('password') %>
 
 <% 40.times do |i| %>
@@ -10,5 +12,7 @@ user_<%= i %>:
   name: username<%= i %>
   surname: usersurname<%= i %>
   mail: user<%= i %>@mail.com
+  activated: true
+  activated_at: <%= Time.zone.now %>
   password_digest: <%= User.digest('password') %>
 <% end %>

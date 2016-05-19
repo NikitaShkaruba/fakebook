@@ -5,6 +5,8 @@ User.create!(
         surname: 'Shkaruba',
         mail: 'sh.nickita@list.ru',
         admin: true,
+        activated: true,
+        activated_at: Time.zone.now,
         password: 'foobar',
         password_confirmation: 'foobar')
 
@@ -13,12 +15,14 @@ User.create!(
 
   name  = fullName[0]
   surname = fullName[0]
-  mail = "name#{n+1}@mail.ru"
+  mail = "#{name}_#{n+1}@mail.ru"
   password = 'password'
 
   User.create!(name:    name,
                surname: surname,
                mail:    mail,
+               activated: true,
+               activated_at: Time.zone.now,
                password:              password,
                password_confirmation: password)
 end
