@@ -1,14 +1,14 @@
-fedor:
-  name: Fedor
-  surname: Baranenko
+admin:
+  name: Admin
+  surname: Adminov
   admin: true
-  city: Krasnodar
-  mail: fedor.baranenko@mail.ru
+  mail: admin@yourservice.com
   password_digest: <%= User.digest('password') %>
 
-michael:
-  name: Michael
-  surname: Kingdom
-  city: San Diego
-  mail: m.kngdm@example.com
+<% 40.times do |i| %>
+user_<%= i %>:
+  name: username<%= i %>
+  surname: usersurname<%= i %>
+  mail: user<%= i %>@mail.com
   password_digest: <%= User.digest('password') %>
+<% end %>

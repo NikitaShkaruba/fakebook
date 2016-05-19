@@ -2,8 +2,9 @@ require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   def setup
-    @user = users(:fedor)
-    @other_user = users(:michael)
+    @admin = users(:admin)
+    @user = users(:user_1)
+    @other_user = users(:user_2)
   end
 
   test 'should redirect edit when not logged in' do
@@ -47,15 +48,17 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should redirect destroy when logged in as a non-admin' do
-    log_in_as(@other_user)
+    log_in_as(@user)
     assert_no_difference 'User.count' do
-      delete user_path(@user)
+      delete user_path(@other_user)
     end
     assert_redirected_to root_url
   end
 
   test 'index as admin including pagination and delete links' do
-    log_in_as(@user)
+    log_in_as(@admin)
+
+    assert is_logged_in?
     get users_path
     assert_template 'users/index'
     # assert_select 'div.pagination'     dunno why it can't find it :\
@@ -72,7 +75,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'index as non-admin' do
-    log_in_as(@other_user)
+    log_in_as(@user)
     get users_path
     assert_select 'a', text: 'delete', count: 0
   end
