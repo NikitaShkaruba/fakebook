@@ -20,16 +20,6 @@ class UserTest < ActiveSupport::TestCase
     assert_not @user.valid?
   end
 
-  test 'name should be not longer then 10' do
-    @user.name = 'q'*11
-    assert_not @user.valid?
-  end
-
-  test 'surname should be not longer then 10' do
-    @user.surname = 'q'*21
-    assert_not @user.valid?
-  end
-
   test 'email validation  should accept valid adresses' do
     valid_addresses = %W[me@example.com ME@example.COM A-USER@foo.bar.example.com hi.there@example.com]
 

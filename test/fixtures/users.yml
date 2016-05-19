@@ -1,6 +1,7 @@
 fedor:
   name: Fedor
   surname: Baranenko
+  admin: true
   city: Krasnodar
   mail: fedor.baranenko@mail.ru
   password_digest: <%= User.digest('password') %>
