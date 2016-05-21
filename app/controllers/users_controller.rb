@@ -3,10 +3,6 @@ class UsersController < ApplicationController
   before_action :correct_user,        only: [:edit, :update]
   before_action :admin_user,          only: :destroy
 
-  def index
-    @users = User.paginate(page: params[:page])
-  end
-
   def new
     @user = User.new
   end
@@ -19,6 +15,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts.paginate(page: params[:page])
+    @new_post = current_user.posts.build if logged_in?
   end
 
   def create
@@ -48,6 +46,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    @users = User.paginate(page: params[:page])
+  end
+
 private
   def user_create_params
     params.require(:user).permit(:name, :surname, :mail, :password)
@@ -58,13 +60,6 @@ private
   end
 
   # Before filters
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = 'Please, log in to access private pages!'
-      redirect_to login_path
-    end
-  end
   def correct_user
     @user = User.find(params[:id])
     unless @user == current_user

@@ -38,18 +38,14 @@
   <br/>
 
   <div class="col-md-13">
-    <p class="bg-info">Posts</p>
-    <% 15.times do |i|%>
-        <div class="container">
-          <div class="col-md-1">
-            <%= gravatar_for @user, 50 %>
-          </div>
-          <div class="col-md-3">
-            <p>Text about my amazing post # <%= i %></p>
-            <p><%= 'blahblah' * 5 %></p>
-          </div>
-        </div>
-        <hr style="width: 100%"/>
+    <% if @user.posts.any? %>
+      <h5 class="bg-info">Posts (<%= @user.posts.count %>)</h5>
+      <% if logged_in? && current_user == @user %>
+          <%= render 'shared/post_form' %>
+          <hr style="width: 100%"/>
+      <% end %>
+      <%= render @posts %>
+      <%= will_paginate @posts %>
     <% end %>
   </div>
 </div>
