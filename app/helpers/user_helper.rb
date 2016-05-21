@@ -1,4 +1,4 @@
-module PersonHelper
+module UserHelper
   # Returns the gravatar for given user
   def gravatar_for(user, size)
     gravatar_id = Digest::MD5::hexdigest(user.mail.downcase)
