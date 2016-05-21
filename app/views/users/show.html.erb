@@ -37,13 +37,13 @@
   </div>
   <br/>
 
+  <h5 class="bg-info">Posts (<%= @user.posts.count %>)</h5>
+  <% if logged_in? && current_user == @user %>
+      <%= render 'shared/post_form' %>
+      <hr style="width: 100%"/>
+  <% end %>
   <div class="col-md-13">
     <% if @user.posts.any? %>
-      <h5 class="bg-info">Posts (<%= @user.posts.count %>)</h5>
-      <% if logged_in? && current_user == @user %>
-          <%= render 'shared/post_form' %>
-          <hr style="width: 100%"/>
-      <% end %>
       <%= render @posts %>
       <%= will_paginate @posts %>
     <% end %>
