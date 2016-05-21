@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="col-md-1">
+    <%= gravatar_for post.user, 50 %>
+  </div>
+  <div class="col-md-3">
+      <span class="user"><%= link_to "#{post.user.name} #{post.user.surname}", post.user %></span>
+    <p class="content"><%= post.content %></p>
+      <%= image_tag post.picture.url if post.picture? %>
+      Posted <%= time_ago_in_words(post.created_at) %> ago
+    <% if current_user == post.user %>
+        <%= link_to 'delete', post, method: :delete, data: { confirm: 'You sure?'} %>
+    <% end %>
+  </div>
+</div>
+<hr style="width: 100%"/>

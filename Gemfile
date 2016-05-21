@@ -8,6 +8,9 @@ gem 'bcrypt', '3.1.7'
 gem 'faker', '1.4.2'
 gem 'will_paginate', '~> 3.1.0'
 gem 'will_paginate-bootstrap'
+gem 'carrierwave',             '0.10.0'
+gem 'mini_magick',             '3.8.0'
+gem 'fog',                     '1.36.0'
 
 gem 'rails-controller-testing'
 # Use postgresql as the database for Active Record
