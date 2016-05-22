@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user,      only: [:edit, :update, :index, :destroy]
+  before_action :not_logged_in_user,  only: :new
+  before_action :logged_in_user,      only: [:edit, :update, :index, :destroy, :following, :followers]
   before_action :correct_user,        only: [:edit, :update]
   before_action :admin_user,          only: :destroy
 
@@ -24,7 +25,7 @@ class UsersController < ApplicationController
 
     if @user.save
       @user.send_activation_email
-      flash[:info] = 'Please check your email to activate your account.'
+      flash[:info] = "Please check your email to activate your account. Mail's arrival time ~ 30 seconds"
       redirect_to root_url
     else
       render 'new'
@@ -50,6 +51,20 @@ class UsersController < ApplicationController
     @users = User.paginate(page: params[:page])
   end
 
+  def following
+    @title = 'Following'
+    @user  = User.find(params[:id])
+    @users = @user.following.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
+  def followers
+    @title = 'Followers'
+    @user  = User.find(params[:id])
+    @users = @user.followers.paginate(page: params[:page])
+    render 'show_follow'
+  end
+
 private
   def user_create_params
     params.require(:user).permit(:name, :surname, :mail, :password)
@@ -60,6 +75,11 @@ private
   end
 
   # Before filters
+  def not_logged_in_user
+    if logged_in?
+      redirect_to user_path(current_user)
+    end
+  end
   def correct_user
     @user = User.find(params[:id])
     unless @user == current_user

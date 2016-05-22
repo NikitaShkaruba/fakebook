@@ -1,14 +1,37 @@
 <div class="col-md-4 col-centered">
-  <%= gravatar_for @user, 200 %>
+  <div class="row">
+    <%= gravatar_for @user, 211 %>
+    <div class="div-center">
+      <%= render 'shared/stats' %>
+    </div>
+    <%= render 'follow_form' if logged_in? %>
 
-  <br/>
-  <br/>
-  <p>Photos</p>
-  <p>Friends</p>
-  <p>Music</p>
+    <hr style="width: 100%"/>
+
+  <% if @user.followers.any? %>
+    <h4>Some followers:</h4>
+    <div class="user_avatars">
+      <% @user.followers.all.sample(6).each do |user| %>
+          <%= link_to gravatar_for(user, 65), user %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @user.followers.any? %>
+    <h4>Some following:</h4>
+    <div class="user_avatars">
+      <% @user.following.all.sample(6).each do |user| %>
+          <%= link_to gravatar_for(user, 65), user %>
+      <% end %>
+    </div>
+  <% end %>
+  </div>
+  <hr style="width: 100%"/>
+
 </div>
+
 <div class="col-md-8">
-  <strong><%= @user.name + ' ' + @user.surname %></strong>
+  <h4><strong><%= @user.name + ' ' + @user.surname %></strong></h4>
   <p class="text-muted"><%= @user.status %></p>
   <hr style="width: 100%"/>
 
@@ -20,7 +43,7 @@
     <small class="text-muted">Phone number:</small>         <br/>
     <small class="text-muted">Gender: </small>              <br/>
   </div>
-  <div class="col-md-8">
+  <div class="col8md-8">
     <small><%= @user.profession %></small>    <br/>
     <small><%= @user.relationship %></small>  <br/>
     <small><%= @user.date_of_birth %></small> <br/>
@@ -29,13 +52,6 @@
     <small><%= @user.gender %></small>        <br/>
   </div>
   <hr style="width: 100%"/>
-
-  <div class="col-md-13">
-    <p class="bg-info">Photos</p>
-    <li>Photo1</li>
-    <li>Photo2</li>
-  </div>
-  <br/>
 
   <h5 class="bg-info">Posts (<%= @user.posts.count %>)</h5>
   <% if logged_in? && current_user == @user %>

@@ -1,5 +1,11 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
+  # Following
+  has_many :active_relationships, class_name: 'Relationship', foreign_key: 'follower_id', dependent:   :destroy
+  has_many :following, through: :active_relationships, source: :followed # I need source coz of singularization
+  # Followers
+  has_many :passive_relationships, class_name: 'Relationship', foreign_key: 'followed_id', dependent:   :destroy
+  has_many :followers, through: :passive_relationships, source: :follower
 
   attr_accessor :remember_token, :activation_token, :reset_token
   validates :name, presence: true
@@ -59,8 +65,20 @@ class User < ApplicationRecord
   end
 
   def feed
-    # TODO: add logic
-    posts
+    following_ids = 'SELECT followed_id FROM relationships WHERE  follower_id = :user_id'
+    Post.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: id)
+  end
+
+  def follow(user)
+    active_relationships.create(followed_id: user.id)
+  end
+
+  def unfollow(user)
+    active_relationships.find_by(followed_id: user.id).destroy
+  end
+
+  def following?(user)
+    following.include?(user)
   end
 
   private
