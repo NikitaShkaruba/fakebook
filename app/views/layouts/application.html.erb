@@ -15,14 +15,8 @@
           <%= link_to image_tag('logo.jpg', height: '50', with: '680', :border => 0, :alt => '', :title => ''), current_user, :class => 'dock-item ' %>
         </div>
         <div class="col-md-7 col-md-offset-4">
-          <div class="center-block" >
-            <%= link_to 'Contact me VK', 'https://vk.com/wavemeaside' %>
-            <% if logged_in? %>
-              <%= link_to 'People', users_path %>
-              <%= link_to 'Log out', logout_path, method: 'delete' %>
-            <% else %>
-                <%= link_to 'Log in', root_path %>
-            <% end %>
+          <div class="div-center" >
+
           </div>
         </div>
       </header>
@@ -30,13 +24,17 @@
         <div class='col-sm-2 left-bar'>
           <% if logged_in? %>
             <%= link_to 'My Page', current_user, id: 'logo' %> <br/>
-            <%= link_to 'My Followers', following_user_path(@current_user) %>   <br/>
             <%= link_to 'My Followers', followers_user_path(@current_user) %>   <br/>
+            <%= link_to 'My Followings', following_user_path(@current_user) %>   <br/>
             <%= link_to 'My Feed', feed_path %>      <br/>
             <%= link_to 'My Settings', edit_user_path(@current_user) %>  <br/><br/>
+
+            <%= link_to 'All Users', users_path %> <br/> <br/>
+            <%= link_to "Dev's vk", 'https://vk.com/wavemeaside'  %> <br/>
+            <%= link_to 'Log out', logout_path, method: 'delete' %>
           <% else %>
             <%= link_to 'Log in', login_path %> <br/>
-            <%= link_to 'Sign up', signup_path %>
+            <%= link_to 'Sign up', signup_path %> <br/>
           <% end %>
         </div>
         <div class='container col-md-10 right-wrap'>
