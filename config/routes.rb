@@ -6,11 +6,14 @@ Rails.application.routes.draw do
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
   get    'feed'    => 'feed#index'
-  get 'password_resets/edit'
-  get 'password_resets/new'
 
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :posts,               only: [:create, :destroy]
+  resources :relationships,       only: [:create, :destroy]
 end

@@ -4,10 +4,9 @@
   <div class="field">
     <%= f.text_area :content, placeholder: 'My life is so interesting...', cols: 46 %>
   </div>
-  <%= f.submit 'Post', class: 'btn btn-primary' %>
-  <span class="picture">
-    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png' %>
-  </span>
+    <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png', class: 'row-width' %>
+    <br/>
+    <%= f.submit 'Post', class: 'btn btn-primary' %>
 <% end %>
 
 <script type="text/javascript">

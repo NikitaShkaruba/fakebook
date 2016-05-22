@@ -58,4 +58,40 @@ class UserTest < ActiveSupport::TestCase
       @user.destroy
     end
   end
+
+  test 'should follow and unfollow a user' do
+    # I user user_10 and user_11 coz first ones e.g. user_1 has relations in fixtures
+    user_1 = users(:user_10)
+    user_2  = users(:user_11)
+
+    assert_not user_1.following?(user_2)
+
+    user_1.follow(user_2)
+    assert user_1.following?(user_2)
+    assert user_2.followers.include?(user_1)
+
+    user_1.unfollow(user_2)
+    assert_not user_1.following?(user_2)
+  end
+
+  test 'feed should have the right posts' do
+    jake = users(:user_1)
+    jake_follower = users(:user_2)
+    jake_not_follower = users(:user_10)
+
+    # Posts from followed user
+    jake.posts.each do |post_following|
+      assert jake_follower.feed.include?(post_following)
+    end
+
+    # Posts from self
+    jake.posts.each do |post_self|
+      assert jake.feed.include?(post_self)
+    end
+
+    # Posts from unfollowed user
+    jake.posts.each do |post_unfollowed|
+      assert_not jake_not_follower.feed.include?(post_unfollowed)
+    end
+  end
 end
