@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FakeBook's home</title>
+    <title>FakeBook</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,18 +9,13 @@
   </head>
 
   <body>
-    <div id="wrap" class="col-md-6 col-md-offset-3">
+    <div id="wrap" class="container col-md-6 col-md-offset-3">
       <header class="row">
         <div class='col-md-1'>
           <%= link_to image_tag('logo.jpg', height: '50', with: '680', :border => 0, :alt => '', :title => ''), current_user, :class => 'dock-item ' %>
         </div>
-        <div class="col-md-7 col-md-offset-4">
-          <div class="div-center" >
-
-          </div>
-        </div>
       </header>
-      <div class="row ">
+      <div class="row">
         <div class='col-sm-2 left-bar'>
           <% if logged_in? %>
             <%= link_to 'My Page', current_user, id: 'logo' %> <br/>
@@ -37,15 +32,16 @@
             <%= link_to 'Sign up', signup_path %> <br/>
           <% end %>
         </div>
-        <div class='container col-md-10 right-wrap'>
-          <div>
+        <div class="col-md-10 right-wrap">
+          <div id="flash" class="row">
             <% flash.each do |message_type, message| %>
                 <div cls class="flash" guideaass="alert alert-<%= message_type %>"><%= message %></div>
             <% end %>
+          </div><br/>
+          <div id="content" class="row">
+            <%= yield %>
+            <%= debug(params) if Rails.env.development? %>
           </div>
-          <br/>
-          <%= yield %>
-          <%= debug(params) if Rails.env.development? %>
         </div>
       </div>
     </div>

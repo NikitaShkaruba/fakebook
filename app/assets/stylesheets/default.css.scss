@@ -63,3 +63,7 @@ small {
   @extend .text-center;
   color: blue;
 }
+
+textarea {
+  resize: vertical;
+}

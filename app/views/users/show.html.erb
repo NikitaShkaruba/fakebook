@@ -1,64 +1,82 @@
-<div class="col-md-4 col-centered">
+<div class="col-md-4">
   <div class="row">
-    <%= gravatar_for @user, 211 %>
-    <div class="div-center">
-      <%= render 'shared/stats' %>
-    </div>
+    <%= gravatar_for @user, 215 %>
+  </div>
+  <div class="div-center">
+    <%= render 'shared/stats' %>
+  </div>
+  <div>
     <%= render 'follow_form' if logged_in? %>
+  </div>
+  <hr style="width: 100%"/>
 
-    <hr style="width: 100%"/>
-
+  <div class="row">
   <% if @user.followers.any? %>
-    <h4>Some followers:</h4>
     <div class="user_avatars">
+      <h4>Some followers:</h4>
       <% @user.followers.all.sample(6).each do |user| %>
-          <%= link_to gravatar_for(user, 65), user %>
+          <%= link_to gravatar_for(user, 55), user %>
       <% end %>
     </div>
   <% end %>
+  </div>
 
+  <div class="row">
   <% if @user.followers.any? %>
-    <h4>Some following:</h4>
     <div class="user_avatars">
+      <h4>Some following:</h4>
       <% @user.following.all.sample(6).each do |user| %>
-          <%= link_to gravatar_for(user, 65), user %>
+          <%= link_to gravatar_for(user, 55), user %>
       <% end %>
     </div>
   <% end %>
   </div>
   <hr style="width: 100%"/>
-
 </div>
 
 <div class="col-md-8">
-  <h4><strong><%= @user.name + ' ' + @user.surname %></strong></h4>
-  <p class="text-muted"><%= @user.status %></p>
+  <div class="row">
+    <h4><strong><%= @user.name + ' ' + @user.surname %></strong></h4>
+    <p class="text-muted"><%= @user.status %></p>
+    <hr style="width: 100%"/>
+  </div>
+
+  <div class="row">
+  <table id="info" style="width: 100%">
+    <tr>
+      <td width="30%"><small class="text-muted">Purpose in life:</small></td>
+      <td><small><%= @user.profession %></small></td>
+    </tr>
+    <tr>
+      <td><small class="text-muted">Relationship status:</small>  <br/></td>
+      <td><small><%= @user.relationship %></small>  <br/></td>
+    </tr>
+    <tr>
+      <td><small class="text-muted">City:</small></td>
+      <td><small><%= @user.city %></small></td>
+    </tr>
+    <tr>
+      <td><small class="text-muted">Birthday:</small></td>
+      <td><small><%= @user.date_of_birth %></small> <br/></td>
+    </tr>
+    <tr>
+      <td><small class="text-muted">Phone number:</small></td>
+      <td><small><%= @user.phone_number %></small></td>
+    </tr>
+    <tr>
+      <td><small class="text-muted">Gender: </small></td>
+      <td><small><%= @user.gender %></small></td>
+    </tr>
+  </table>
+  </div>
   <hr style="width: 100%"/>
 
-  <div class="col-md-4">
-    <small class="text-muted">Purpose in life:</small>      <br/>
-    <small class="text-muted">Relationship status:</small>  <br/>
-    <small class="text-muted">Birthday:</small>             <br/>
-    <small class="text-muted">City:</small>                 <br/>
-    <small class="text-muted">Phone number:</small>         <br/>
-    <small class="text-muted">Gender: </small>              <br/>
-  </div>
-  <div class="col8md-8">
-    <small><%= @user.profession %></small>    <br/>
-    <small><%= @user.relationship %></small>  <br/>
-    <small><%= @user.date_of_birth %></small> <br/>
-    <small><%= @user.city %></small>          <br/>
-    <small><%= @user.phone_number %></small>  <br/>
-    <small><%= @user.gender %></small>        <br/>
-  </div>
-  <hr style="width: 100%"/>
-
-  <h5 class="bg-info">Posts (<%= @user.posts.count %>)</h5>
-  <% if logged_in? && current_user == @user %>
-      <%= render 'shared/post_form' %>
-      <hr style="width: 100%"/>
-  <% end %>
-  <div class="col-md-13">
+  <div class="row">
+    <h5 class="bg-info">Posts (<%= @user.posts.count %>)</h5>
+    <% if logged_in? && current_user == @user %>
+        <%= render 'shared/post_form' %>
+        <hr style="width: 100%"/>
+    <% end %>
     <% if @user.posts.any? %>
       <%= render @posts %>
       <%= will_paginate @posts %>
