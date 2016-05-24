@@ -13,10 +13,9 @@
   <div class="row">
   <% if @user.followers.any? %>
     <div class="user_avatars">
-      <h4>Some followers:</h4>
-      <% @user.followers.all.sample(6).each do |user| %>
-          <%= link_to gravatar_for(user, 55), user %>
-      <% end %>
+      <h4>Random follower:</h4>
+      <%! random_follower = @user.followers.all.sample %>
+      <%= link_to gravatar_for(random_follower, 55), random_follower %>
     </div>
   <% end %>
   </div>
@@ -25,9 +24,8 @@
   <% if @user.followers.any? %>
     <div class="user_avatars">
       <h4>Some following:</h4>
-      <% @user.following.all.sample(6).each do |user| %>
-          <%= link_to gravatar_for(user, 55), user %>
-      <% end %>
+      <%! random_following = @user.following.all.sample %>
+      <%= link_to gravatar_for(random_following, 55), random_following %>
     </div>
   <% end %>
   </div>
