@@ -24,7 +24,7 @@
             <%= link_to 'My Feed', feed_path %>      <br/>
             <%= link_to 'My Settings', edit_user_path(@current_user) %>  <br/><br/>
 
-            <%= link_to 'All Users', users_path %> <br/> <br/>
+            <%= link_to "All Users(#{User.count})", users_path %> <br/> <br/>
             <%= link_to "Dev's vk", 'https://vk.com/wavemeaside'  %> <br/>
             <%= link_to 'Log out', logout_path, method: 'delete' %>
           <% else %>
